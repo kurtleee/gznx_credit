@@ -1,5 +1,7 @@
 ## gznx_credit
 ![example workflow](https://github.com/kurtleee/gznx_credit/actions/workflows/codeql.yml/badge.svg)
+![example workflow](https://github.com/kurtleee/gznx_credit/actions/workflows/greetings.yml/badge.svg)
+![example workflow](https://github.com/kurtleee/gznx_credit/actions/workflows/label.yml/badge.svg)
 ### 微服务模块划分方案
 
 1. **Auth-Service（认证服务）**
