@@ -22,3 +22,48 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Added By @kurtleee
+
+# ------------2024/08/27-----------
+
+# Ignore build output directories
+/target/
+/build/
+
+# Ignore Maven and Gradle directories
+/.mvn/
+/.gradle/
+/.gradle-cache/
+/build/
+
+# Ignore IDE specific files and directories
+/.idea/
+/*.iml
+/.project
+/.classpath
+/.settings/
+/.vscode/
+/out/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore configuration files
+*.yml
+*.yaml
+*.properties
+*.env
+
+# Ignore other temporary files and directories
+/tmp
+/.temp
+/.cache
+*.swp
+*.swo
+*~
