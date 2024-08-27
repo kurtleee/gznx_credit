@@ -1,5 +1,5 @@
-# gznx_credit
-
+## gznx_credit
+![example workflow](https://github.com/kurtleee/gznx_credit/actions/workflows/WORKFLOW-FILE/badge.svg)
 ### 微服务模块划分方案
 
 1. **Auth-Service（认证服务）**
