@@ -1,0 +1,16 @@
+# 标签定义
+frontend:
+  - "src/frontend/**/*"
+  - "**/*.css"
+
+backend:
+  - "src/backend/**/*"
+  - "**/*.java"
+
+documentation:
+  - "*.md"
+  - "docs/**/*"
+
+ci-cd:
+  - ".github/workflows/**/*"
+  - "ci/**/*"
