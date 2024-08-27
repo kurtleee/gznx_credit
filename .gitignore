@@ -67,3 +67,45 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# ------------------------------------------
+
+# Ignore build output directories and compiled files
+**/target/
+**/build/
+**/out/
+**/*.class
+**/*.jar
+**/*.war
+**/*.ear
+
+# Ignore IDE specific files and directories
+**/.idea/
+**/*.iml
+**/.project
+**/.classpath
+**/.settings/
+**/.vscode/
+
+# Ignore OS generated files
+**/.DS_Store
+**/Thumbs.db
+
+# Ignore logs and temporary files
+**/*.log
+**/*.tmp
+**/*.swp
+**/*.swo
+**/*~
+
+# Ignore configuration files in any directory, including submodules
+**/*.yml
+**/*.yaml
+**/*.properties
+**/*.env
+
+# Ignore other temporary files and directories
+**/tmp/
+**/.temp/
+**/.cache/
+
