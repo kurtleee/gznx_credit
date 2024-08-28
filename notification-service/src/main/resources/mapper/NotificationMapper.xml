@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.uniview.notification.mapper.NotificationMapper">
 
-    <resultMap id="BaseResultMap" type="com.uniview.notification.notification.Notification">
+    <resultMap id="BaseResultMap" type="com.uniview.notification.pojo.Notification">
             <id property="notificationId" column="notification_id" jdbcType="BIGINT"/>
             <result property="recipientId" column="recipient_id" jdbcType="BIGINT"/>
             <result property="message" column="message" jdbcType="VARCHAR"/>

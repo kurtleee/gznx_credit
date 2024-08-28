@@ -1,4 +1,4 @@
-package com.uniview.notification.notification;
+package com.uniview.notification.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
