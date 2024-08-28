@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.agriculture.mapper.JointGroupMemberMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.agriculture.pojo.JointGroupMember">
+            <id property="memberId" column="member_id" jdbcType="BIGINT"/>
+            <result property="groupId" column="group_id" jdbcType="BIGINT"/>
+            <result property="customerId" column="customer_id" jdbcType="BIGINT"/>
+            <result property="customerName" column="customer_name" jdbcType="VARCHAR"/>
+            <result property="idNumber" column="id_number" jdbcType="VARCHAR"/>
+            <result property="creditLimit" column="credit_limit" jdbcType="DECIMAL"/>
+            <result property="depositRatio" column="deposit_ratio" jdbcType="DECIMAL"/>
+            <result property="depositAccount" column="deposit_account" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        member_id,group_id,customer_id,
+        customer_name,id_number,credit_limit,
+        deposit_ratio,deposit_account
+    </sql>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.agriculture.mapper.JointAgreementMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.agriculture.pojo.JointAgreement">
+            <result property="agreementId" column="agreement_id" jdbcType="VARCHAR"/>
+            <result property="groupId" column="group_id" jdbcType="VARCHAR"/>
+            <result property="startDate" column="start_date" jdbcType="DATE"/>
+            <result property="endDate" column="end_date" jdbcType="DATE"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="signDate" column="sign_date" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        agreement_id,group_id,start_date,
+        end_date,status,sign_date
+    </sql>
+</mapper>
