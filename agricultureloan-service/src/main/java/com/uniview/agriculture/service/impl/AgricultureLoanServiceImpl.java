@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
 * @author kurtlee
 * @description 针对表【agriculture_loan】的数据库操作Service实现
-* @createDate 2024-08-28 14:28:59
+* @createDate 2024-08-28 14:48:07
 */
 @Service
 public class AgricultureLoanServiceImpl extends ServiceImpl<AgricultureLoanMapper, AgricultureLoan>
