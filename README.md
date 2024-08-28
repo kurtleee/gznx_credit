@@ -4,7 +4,11 @@
 ![example workflow](https://github.com/kurtleee/gznx_credit/actions/workflows/label.yml/badge.svg)
 ![example workflow](https://github.com/kurtleee/gznx_credit/actions/workflows/stale.yml/badge.svg)
 ![Spring Boot 2.0](https://img.shields.io/badge/Spring%20Boot-2.0-brightgreen.svg)
+
+
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-3.5.0-yellowgreen.svg)
+
 ![CloudFlare Support](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
 ![Linode Support](https://img.shields.io/badge/Linode-00A95C?style=for-the-badge&logo=Linode&logoColor=white)
 ![MQ](https://img.shields.io/badge/rabbitmq-%23FF6600.svg?&style=for-the-badge&logo=rabbitmq&logoColor=white)
