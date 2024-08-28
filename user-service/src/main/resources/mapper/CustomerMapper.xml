@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.user.mapper.CustomerMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.user.pojo.Customer">
+            <id property="customerId" column="customer_id" jdbcType="BIGINT"/>
+            <result property="customerName" column="customer_name" jdbcType="VARCHAR"/>
+            <result property="customerType" column="customer_type" jdbcType="INTEGER"/>
+            <result property="idNumber" column="id_number" jdbcType="VARCHAR"/>
+            <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        customer_id,customer_name,customer_type,
+        id_number,phone_number,address,
+        created_at,updated_at
+    </sql>
+</mapper>

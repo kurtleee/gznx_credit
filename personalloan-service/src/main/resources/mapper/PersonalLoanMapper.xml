@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.personal.mapper.PersonalLoanMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.personal.pojo.PersonalLoan">
+            <id property="personalLoanId" column="personal_loan_id" jdbcType="BIGINT"/>
+            <result property="customerId" column="customer_id" jdbcType="BIGINT"/>
+            <result property="loanAmount" column="loan_amount" jdbcType="DECIMAL"/>
+            <result property="loanTerm" column="loan_term" jdbcType="INTEGER"/>
+            <result property="loanStartDate" column="loan_start_date" jdbcType="DATE"/>
+            <result property="loanEndDate" column="loan_end_date" jdbcType="DATE"/>
+            <result property="loanPurpose" column="loan_purpose" jdbcType="VARCHAR"/>
+            <result property="loanStatus" column="loan_status" jdbcType="VARCHAR"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        personal_loan_id,customer_id,loan_amount,
+        loan_term,loan_start_date,loan_end_date,
+        loan_purpose,loan_status,created_at,
+        updated_at
+    </sql>
+</mapper>

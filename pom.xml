@@ -19,6 +19,7 @@
         <module>reporting-service</module>
         <module>gateway-service</module>
         <module>config-service</module>
+        <module>personalloan-service</module>
     </modules>
 
     <properties>

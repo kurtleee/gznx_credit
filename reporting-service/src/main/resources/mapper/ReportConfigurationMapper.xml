@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.report.mapper.ReportConfigurationMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.report.pojo.ReportConfiguration">
+            <id property="reportId" column="report_id" jdbcType="BIGINT"/>
+            <result property="reportName" column="report_name" jdbcType="VARCHAR"/>
+            <result property="reportDescription" column="report_description" jdbcType="VARCHAR"/>
+            <result property="reportQuery" column="report_query" jdbcType="VARCHAR"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        report_id,report_name,report_description,
+        report_query,created_at
+    </sql>
+</mapper>
