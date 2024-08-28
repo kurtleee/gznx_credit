@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.postloan.mapper.CollectionRecordMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.postloan.pojo.CollectionRecord">
+            <id property="recordId" column="record_id" jdbcType="BIGINT"/>
+            <result property="taskId" column="task_id" jdbcType="BIGINT"/>
+            <result property="contactDate" column="contact_date" jdbcType="DATE"/>
+            <result property="contactMethod" column="contact_method" jdbcType="VARCHAR"/>
+            <result property="contactResult" column="contact_result" jdbcType="VARCHAR"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        record_id,task_id,contact_date,
+        contact_method,contact_result,created_at,
+        updated_at
+    </sql>
+</mapper>
