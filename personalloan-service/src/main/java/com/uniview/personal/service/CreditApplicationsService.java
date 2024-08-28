@@ -1,7 +1,10 @@
 package com.uniview.personal.service;
 
+import com.uniview.personal.dto.CreditApplicationDTO;
 import com.uniview.personal.pojo.CreditApplications;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author kurtlee
@@ -10,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface CreditApplicationsService extends IService<CreditApplications> {
 
+    List<CreditApplications> getApplications(CreditApplicationDTO creditApplicationDTO);
 }
