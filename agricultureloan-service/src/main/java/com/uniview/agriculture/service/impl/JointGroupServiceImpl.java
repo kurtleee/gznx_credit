@@ -15,6 +15,10 @@ import org.springframework.stereotype.Service;
 public class JointGroupServiceImpl extends ServiceImpl<JointGroupMapper, JointGroup>
     implements JointGroupService{
 
+    @Override
+    public JointGroup getJointGroupByJointId(String jointId) {
+        return null;
+    }
 }
 
 

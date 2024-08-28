@@ -20,6 +20,7 @@
         <module>gateway-service</module>
         <module>config-service</module>
         <module>personalloan-service</module>
+        <module>common-service</module>
     </modules>
 
     <properties>
