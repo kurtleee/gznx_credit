@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.personal.mapper.LoanExtensionMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.personal.pojo.LoanExtension">
+            <id property="businessSerialNumber" column="business_serial_number" jdbcType="VARCHAR"/>
+            <result property="customerNumber" column="customer_number" jdbcType="VARCHAR"/>
+            <result property="productId" column="product_id" jdbcType="INTEGER"/>
+            <result property="extendedAmount" column="extended_amount" jdbcType="DECIMAL"/>
+            <result property="customerManager" column="customer_manager" jdbcType="INTEGER"/>
+            <result property="managedBranch" column="managed_branch" jdbcType="INTEGER"/>
+            <result property="approvalStatus" column="approval_status" jdbcType="INTEGER"/>
+            <result property="registrationDate" column="registration_date" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        business_serial_number,customer_number,product_id,
+        extended_amount,customer_manager,managed_branch,
+        approval_status,registration_date
+    </sql>
+</mapper>
