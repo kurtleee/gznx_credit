@@ -3,6 +3,8 @@ package com.uniview.user.service;
 import com.uniview.user.pojo.Customer;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author kurtlee
 * @description 针对表【customer】的数据库操作Service
@@ -10,4 +12,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface CustomerService extends IService<Customer> {
 
+    /**
+     * 根据客户类型查询客户信息
+     * @param customerType
+     * @return
+     */
+    List<Customer> getCustomersByType(int customerType);
 }
