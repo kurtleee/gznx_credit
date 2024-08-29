@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author: yuancw
- * @date: Created in 2024/5/28 12:46
- * @modified By:
+ * @author ：luosir
+ * @modified By：
  */
 @Configuration
 public class NotificationConfig {

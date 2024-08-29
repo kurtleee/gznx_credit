@@ -27,22 +27,10 @@ public class NotificationServiceImpl extends ServiceImpl<NotificationMapper, Not
     private NotificationConfig notificationConfig;
     @Autowired
     private JavaMailSender mailSender;
-
-
-    //    private String subject ="邮件标题";
-//    private String content ="邮件正文";
-//    private String to = "18098779353@163.com";
-//    private String from = to;
     @Override
     public void sendSimpleNotification(Notification notification) {
         //简单邮件的发送
         SimpleMailMessage mail = new SimpleMailMessage();
-//        mail.setSubject(subject);
-//        mail.setText(content);
-//        mail.setTo(to);
-//        mail.setFrom(from);
-//        mailSender.send(mail);
-//        System.out.println("邮件发送完毕!");
         mail.setFrom(notificationConfig.getNotificationForm());
         mail.setTo(notification.getSendTo());
         mail.setSubject(notification.getTitle());
