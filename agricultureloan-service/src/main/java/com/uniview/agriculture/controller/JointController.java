@@ -1,9 +1,9 @@
 package com.uniview.agriculture.controller;
 
 import com.uniview.agriculture.pojo.JointGroup;
-import com.uniview.agriculture.pojo.JointGroupMember;
 import com.uniview.agriculture.service.JointGroupMemberService;
 import com.uniview.agriculture.service.JointGroupService;
+import com.uniview.common.utils.ResponseData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,10 @@ public class JointController {
 
     /**
      * 查询所有联保小组信息
-     *
      */
     @GetMapping("/joint")
     @ApiOperation("查询所有联保小组信息")
-    public List<JointGroup> getJointGroups() {
+    public ResponseData getJointGroups() {
         // 获取所有联保小组信息
         List<JointGroup> jointGroups = jointGroupService.getJointGroups();
 
@@ -51,9 +50,6 @@ public class JointController {
             jointGroup.setMemberNames(allMembers);
         }
 
-        return jointGroups;
+        return new ResponseData<>().success(jointGroups);
     }
-
-
-
 }
