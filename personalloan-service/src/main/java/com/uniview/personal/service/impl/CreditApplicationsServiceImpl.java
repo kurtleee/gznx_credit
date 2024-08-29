@@ -1,10 +1,13 @@
 package com.uniview.personal.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.uniview.personal.dto.CreditApplicationDTO;
 import com.uniview.personal.pojo.CreditApplications;
 import com.uniview.personal.service.CreditApplicationsService;
 import com.uniview.personal.mapper.CreditApplicationsMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author kurtlee
@@ -15,6 +18,10 @@ import org.springframework.stereotype.Service;
 public class CreditApplicationsServiceImpl extends ServiceImpl<CreditApplicationsMapper, CreditApplications>
     implements CreditApplicationsService{
 
+    @Override
+    public List<CreditApplications> getApplications(CreditApplicationDTO creditApplicationDTO) {
+        return null;
+    }
 }
 
 
