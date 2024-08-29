@@ -7,6 +7,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -55,7 +58,13 @@ public class JointGroup implements Serializable {
     /**
      * 登记日期
      */
+    @JsonFormat(pattern = "yyyy年MM月dd日 HH时mm分ss秒")
     private Date creationDate;
+
+    /**
+     * 联保小组成员
+     */
+    private String MemberNames;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

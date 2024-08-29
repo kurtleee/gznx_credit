@@ -6,6 +6,8 @@ import com.uniview.agriculture.service.JointGroupService;
 import com.uniview.agriculture.mapper.JointGroupMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
 * @author yuki
 * @description 针对表【tb_joint_group(联保小组表)】的数据库操作Service实现
@@ -14,10 +16,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class JointGroupServiceImpl extends ServiceImpl<JointGroupMapper, JointGroup>
     implements JointGroupService{
-
+    /**
+     * 查询所有联保小组信息
+     *
+     */
     @Override
-    public JointGroup getJointGroupByJointId(String jointId) {
-        return null;
+    public List<JointGroup> getJointGroups() {
+        return list();
     }
 }
 
