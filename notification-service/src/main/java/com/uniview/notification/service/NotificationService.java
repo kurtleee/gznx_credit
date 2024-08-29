@@ -10,4 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface NotificationService extends IService<Notification> {
 
+    //发送简单的邮件
+    void sendSimpleNotification(Notification notification);
 }
