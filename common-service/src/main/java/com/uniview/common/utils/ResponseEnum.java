@@ -12,7 +12,8 @@ public enum ResponseEnum {
     NOT_FOUND(404,"资源未找到"),
     INTERVAL_ERROR(500,"服务器内部错误"),
     USER_NOT_FOUND(403, "用户不存在"),
-    INVALID_CREDENTIALS(405, "密码错误");
+    INVALID_CREDENTIALS(405, "密码错误"),
+    DISAPPROVAL(800,"审批不通过");
     private final Integer code;
     private final String msg;
 }
