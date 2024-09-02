@@ -6,12 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
 /**
- * 
+ * 客户表
  * @TableName customer
  */
 @TableName(value ="customer")
+@Data
 public class Customer implements Serializable {
     /**
      * 客户ID
@@ -45,6 +47,11 @@ public class Customer implements Serializable {
     private String address;
 
     /**
+     * 信用等级
+     */
+    private Integer creditRating;
+
+    /**
      * 创建时间
      */
     private Date createdAt;
@@ -56,118 +63,6 @@ public class Customer implements Serializable {
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 客户ID
-     */
-    public Long getCustomerId() {
-        return customerId;
-    }
-
-    /**
-     * 客户ID
-     */
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
-    /**
-     * 客户名称
-     */
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    /**
-     * 客户名称
-     */
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    /**
-     * 客户类型（1: 农户, 2: 个人）
-     */
-    public Integer getCustomerType() {
-        return customerType;
-    }
-
-    /**
-     * 客户类型（1: 农户, 2: 个人）
-     */
-    public void setCustomerType(Integer customerType) {
-        this.customerType = customerType;
-    }
-
-    /**
-     * 证件号码
-     */
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    /**
-     * 证件号码
-     */
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
-    }
-
-    /**
-     * 联系电话
-     */
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     * 联系电话
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * 地址
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * 地址
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    /**
-     * 创建时间
-     */
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * 创建时间
-     */
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    /**
-     * 更新时间
-     */
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    /**
-     * 更新时间
-     */
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 
     @Override
     public boolean equals(Object that) {
@@ -187,6 +82,7 @@ public class Customer implements Serializable {
             && (this.getIdNumber() == null ? other.getIdNumber() == null : this.getIdNumber().equals(other.getIdNumber()))
             && (this.getPhoneNumber() == null ? other.getPhoneNumber() == null : this.getPhoneNumber().equals(other.getPhoneNumber()))
             && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
+            && (this.getCreditRating() == null ? other.getCreditRating() == null : this.getCreditRating().equals(other.getCreditRating()))
             && (this.getCreatedAt() == null ? other.getCreatedAt() == null : this.getCreatedAt().equals(other.getCreatedAt()))
             && (this.getUpdatedAt() == null ? other.getUpdatedAt() == null : this.getUpdatedAt().equals(other.getUpdatedAt()));
     }
@@ -201,6 +97,7 @@ public class Customer implements Serializable {
         result = prime * result + ((getIdNumber() == null) ? 0 : getIdNumber().hashCode());
         result = prime * result + ((getPhoneNumber() == null) ? 0 : getPhoneNumber().hashCode());
         result = prime * result + ((getAddress() == null) ? 0 : getAddress().hashCode());
+        result = prime * result + ((getCreditRating() == null) ? 0 : getCreditRating().hashCode());
         result = prime * result + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode());
         result = prime * result + ((getUpdatedAt() == null) ? 0 : getUpdatedAt().hashCode());
         return result;
@@ -218,6 +115,7 @@ public class Customer implements Serializable {
         sb.append(", idNumber=").append(idNumber);
         sb.append(", phoneNumber=").append(phoneNumber);
         sb.append(", address=").append(address);
+        sb.append(", creditRating=").append(creditRating);
         sb.append(", createdAt=").append(createdAt);
         sb.append(", updatedAt=").append(updatedAt);
         sb.append(", serialVersionUID=").append(serialVersionUID);

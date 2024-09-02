@@ -7,12 +7,14 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import lombok.Data;
 
 /**
- * 
+ * 业务申请表
  * @TableName credit_applications
  */
 @TableName(value ="credit_applications")
+@Data
 public class CreditApplications implements Serializable {
     /**
      * 申请编号
@@ -33,7 +35,7 @@ public class CreditApplications implements Serializable {
     /**
      * 产品号
      */
-    private Integer productName;
+    private Integer productNumber;
 
     /**
      * 信用等级
@@ -73,7 +75,7 @@ public class CreditApplications implements Serializable {
     /**
      * 客户经理
      */
-    private Integer clientManager;
+    private Long clientManager;
 
     /**
      * 申请日期
@@ -83,225 +85,15 @@ public class CreditApplications implements Serializable {
     /**
      * 主管网点
      */
-    private Integer mainNetPoint;
+    private String mainNetPoint;
 
     /**
-     * 审批状态
+     * 审批状态（0、未审批）
      */
     private Integer approvalStatus;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 申请编号
-     */
-    public Integer getApplicationId() {
-        return applicationId;
-    }
-
-    /**
-     * 申请编号
-     */
-    public void setApplicationId(Integer applicationId) {
-        this.applicationId = applicationId;
-    }
-
-    /**
-     * 进件编号
-     */
-    public String getEntryId() {
-        return entryId;
-    }
-
-    /**
-     * 进件编号
-     */
-    public void setEntryId(String entryId) {
-        this.entryId = entryId;
-    }
-
-    /**
-     * 客户号
-     */
-    public Integer getClientNumber() {
-        return clientNumber;
-    }
-
-    /**
-     * 客户号
-     */
-    public void setClientNumber(Integer clientNumber) {
-        this.clientNumber = clientNumber;
-    }
-
-    /**
-     * 产品号
-     */
-    public Integer getProductName() {
-        return productName;
-    }
-
-    /**
-     * 产品号
-     */
-    public void setProductName(Integer productName) {
-        this.productName = productName;
-    }
-
-    /**
-     * 信用等级
-     */
-    public Integer getCreditRating() {
-        return creditRating;
-    }
-
-    /**
-     * 信用等级
-     */
-    public void setCreditRating(Integer creditRating) {
-        this.creditRating = creditRating;
-    }
-
-    /**
-     * 授信金额 (元)
-     */
-    public BigDecimal getCreditAmount() {
-        return creditAmount;
-    }
-
-    /**
-     * 授信金额 (元)
-     */
-    public void setCreditAmount(BigDecimal creditAmount) {
-        this.creditAmount = creditAmount;
-    }
-
-    /**
-     * 授信有效期 (月)
-     */
-    public Integer getCreditValidityPeriod() {
-        return creditValidityPeriod;
-    }
-
-    /**
-     * 授信有效期 (月)
-     */
-    public void setCreditValidityPeriod(Integer creditValidityPeriod) {
-        this.creditValidityPeriod = creditValidityPeriod;
-    }
-
-    /**
-     * 授信生效日
-     */
-    public Date getCreditEffectiveDate() {
-        return creditEffectiveDate;
-    }
-
-    /**
-     * 授信生效日
-     */
-    public void setCreditEffectiveDate(Date creditEffectiveDate) {
-        this.creditEffectiveDate = creditEffectiveDate;
-    }
-
-    /**
-     * 贷款金额(元)
-     */
-    public BigDecimal getLoanAmount() {
-        return loanAmount;
-    }
-
-    /**
-     * 贷款金额(元)
-     */
-    public void setLoanAmount(BigDecimal loanAmount) {
-        this.loanAmount = loanAmount;
-    }
-
-    /**
-     * 期限类型
-     */
-    public Integer getTermType() {
-        return termType;
-    }
-
-    /**
-     * 期限类型
-     */
-    public void setTermType(Integer termType) {
-        this.termType = termType;
-    }
-
-    /**
-     * 贷款期限
-     */
-    public Integer getLoanTerm() {
-        return loanTerm;
-    }
-
-    /**
-     * 贷款期限
-     */
-    public void setLoanTerm(Integer loanTerm) {
-        this.loanTerm = loanTerm;
-    }
-
-    /**
-     * 客户经理
-     */
-    public Integer getClientManager() {
-        return clientManager;
-    }
-
-    /**
-     * 客户经理
-     */
-    public void setClientManager(Integer clientManager) {
-        this.clientManager = clientManager;
-    }
-
-    /**
-     * 申请日期
-     */
-    public Date getApplicationDate() {
-        return applicationDate;
-    }
-
-    /**
-     * 申请日期
-     */
-    public void setApplicationDate(Date applicationDate) {
-        this.applicationDate = applicationDate;
-    }
-
-    /**
-     * 主管网点
-     */
-    public Integer getMainNetPoint() {
-        return mainNetPoint;
-    }
-
-    /**
-     * 主管网点
-     */
-    public void setMainNetPoint(Integer mainNetPoint) {
-        this.mainNetPoint = mainNetPoint;
-    }
-
-    /**
-     * 审批状态
-     */
-    public Integer getApprovalStatus() {
-        return approvalStatus;
-    }
-
-    /**
-     * 审批状态
-     */
-    public void setApprovalStatus(Integer approvalStatus) {
-        this.approvalStatus = approvalStatus;
-    }
 
     @Override
     public boolean equals(Object that) {
@@ -318,7 +110,7 @@ public class CreditApplications implements Serializable {
         return (this.getApplicationId() == null ? other.getApplicationId() == null : this.getApplicationId().equals(other.getApplicationId()))
             && (this.getEntryId() == null ? other.getEntryId() == null : this.getEntryId().equals(other.getEntryId()))
             && (this.getClientNumber() == null ? other.getClientNumber() == null : this.getClientNumber().equals(other.getClientNumber()))
-            && (this.getProductName() == null ? other.getProductName() == null : this.getProductName().equals(other.getProductName()))
+            && (this.getProductNumber() == null ? other.getProductNumber() == null : this.getProductNumber().equals(other.getProductNumber()))
             && (this.getCreditRating() == null ? other.getCreditRating() == null : this.getCreditRating().equals(other.getCreditRating()))
             && (this.getCreditAmount() == null ? other.getCreditAmount() == null : this.getCreditAmount().equals(other.getCreditAmount()))
             && (this.getCreditValidityPeriod() == null ? other.getCreditValidityPeriod() == null : this.getCreditValidityPeriod().equals(other.getCreditValidityPeriod()))
@@ -339,7 +131,7 @@ public class CreditApplications implements Serializable {
         result = prime * result + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
         result = prime * result + ((getEntryId() == null) ? 0 : getEntryId().hashCode());
         result = prime * result + ((getClientNumber() == null) ? 0 : getClientNumber().hashCode());
-        result = prime * result + ((getProductName() == null) ? 0 : getProductName().hashCode());
+        result = prime * result + ((getProductNumber() == null) ? 0 : getProductNumber().hashCode());
         result = prime * result + ((getCreditRating() == null) ? 0 : getCreditRating().hashCode());
         result = prime * result + ((getCreditAmount() == null) ? 0 : getCreditAmount().hashCode());
         result = prime * result + ((getCreditValidityPeriod() == null) ? 0 : getCreditValidityPeriod().hashCode());
@@ -363,7 +155,7 @@ public class CreditApplications implements Serializable {
         sb.append(", applicationId=").append(applicationId);
         sb.append(", entryId=").append(entryId);
         sb.append(", clientNumber=").append(clientNumber);
-        sb.append(", productName=").append(productName);
+        sb.append(", productNumber=").append(productNumber);
         sb.append(", creditRating=").append(creditRating);
         sb.append(", creditAmount=").append(creditAmount);
         sb.append(", creditValidityPeriod=").append(creditValidityPeriod);
