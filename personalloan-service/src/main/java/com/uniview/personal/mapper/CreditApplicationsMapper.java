@@ -1,18 +1,20 @@
 package com.uniview.personal.mapper;
 
+import com.uniview.personal.dto.ApplicationQueryDTO;
+import com.uniview.personal.dto.ApplicationResponseDTO;
 import com.uniview.personal.pojo.CreditApplications;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
-* @author kurtlee
-* @description 针对表【credit_applications】的数据库操作Mapper
-* @createDate 2024-08-28 14:47:29
+* @author 22322
+* @description 针对表【credit_applications(业务申请表)】的数据库操作Mapper
+* @createDate 2024-09-02 12:29:19
 * @Entity com.uniview.personal.pojo.CreditApplications
 */
-@Mapper
 public interface CreditApplicationsMapper extends BaseMapper<CreditApplications> {
-
+    List<ApplicationResponseDTO> getApplications(ApplicationQueryDTO applicationQueryDTO);
 }
 
 

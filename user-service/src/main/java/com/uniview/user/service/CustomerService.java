@@ -3,6 +3,7 @@ package com.uniview.user.service;
 import com.uniview.user.pojo.Customer;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -18,4 +19,10 @@ public interface CustomerService extends IService<Customer> {
      * @return
      */
     List<Customer> getCustomersByType(int customerType);
+
+    Customer getCustomerByIdCard(String idCard);
+
+    BigDecimal getCreditLimit(Integer creditRating);
+
+    Integer getCreditTerm(Integer creditRating);
 }
