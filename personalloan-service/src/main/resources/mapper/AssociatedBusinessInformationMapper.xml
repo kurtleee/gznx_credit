@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.personal.mapper.AssociatedBusinessInformationMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.personal.pojo.AssociatedBusinessInformation">
+            <id property="associatedBusinessId" column="associated_business_id" jdbcType="BIGINT"/>
+            <result property="contractNumber" column="contract_number" jdbcType="INTEGER"/>
+            <result property="ioNumber" column="io_number" jdbcType="VARCHAR"/>
+            <result property="clientName" column="client_name" jdbcType="VARCHAR"/>
+            <result property="clientNumber" column="client_number" jdbcType="BIGINT"/>
+            <result property="loanOption" column="loan_option" jdbcType="VARCHAR"/>
+            <result property="mainGuaranteeOption" column="main_guarantee_option" jdbcType="VARCHAR"/>
+            <result property="loanAmount" column="loan_amount" jdbcType="DECIMAL"/>
+            <result property="loanBalance" column="loan_balance" jdbcType="DECIMAL"/>
+            <result property="restructuringAmount" column="restructuring_amount" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        associated_business_id,contract_number,io_number,
+        client_name,client_number,loan_option,
+        main_guarantee_option,loan_amount,loan_balance,
+        restructuring_amount
+    </sql>
+    <select id="getAssociatedBusinessList"
+            resultType="com.uniview.personal.pojo.AssociatedBusinessInformation">
+        SELECT * FROM associated_business_information
+        <where>
+            <if test="contractNumber != null">
+                AND contract_number = #{contractNumber}
+            </if>
+
+            <if test="clientName != null">
+                AND client_name = #{clientName}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerDocumentationController {
     @Autowired
     private CustomerDetailService detailService;
+
     /**
      * 客户建档
      */

@@ -16,7 +16,7 @@ import java.math.BigDecimal;
  * @Filename：CustomerFeign
  * @Description：
  */
-@FeignClient(name = "user-server")
+@FeignClient(name = "user-server",url = "http://localhost:8082")
 public interface CustomerFeign {
     /**
      * 根据身份证号获取客户信息

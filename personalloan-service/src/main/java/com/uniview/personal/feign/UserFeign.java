@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Filename：UserFeign
  * @Description：
  */
-@FeignClient(name = "user-server")
+@FeignClient(name = "user-server", url = "http://localhost:8082")
 public interface UserFeign {
     @GetMapping("getUserById")
     public UserDto getUserById(Long id);
