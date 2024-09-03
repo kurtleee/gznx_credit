@@ -7,9 +7,9 @@ import com.uniview.loan.mapper.CreditApplicationsMapper;
 import org.springframework.stereotype.Service;
 
 /**
-* @author kurtlee
-* @description 针对表【credit_applications】的数据库操作Service实现
-* @createDate 2024-08-28 14:46:47
+* @author 11797
+* @description 针对表【credit_applications(业务申请表)】的数据库操作Service实现
+* @createDate 2024-09-03 16:01:23
 */
 @Service
 public class CreditApplicationsServiceImpl extends ServiceImpl<CreditApplicationsMapper, CreditApplications>
