@@ -44,7 +44,7 @@ public class ApprovalServiceImpl implements ApprovalService {
         Map<String, Object> variables = new HashMap<>();
         variables.put("flag", 1);
         variables.put("childrenFlag", 1);
-        // TestDTO为申请信息的对象，仅作测试
+        // TestDTO为申请信息的对象，仅作测试，必须实现序列化接口
         variables.put("info", new TestDTO(1,"zhangsan",new Date()));
         runtimeService.startProcessInstanceByKey("gznx", variables);
         return new ResponseData<>().success();

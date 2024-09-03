@@ -21,10 +21,7 @@ public interface ApprovalService {
     ResponseData<?> departmentApproval(String taskId, Integer childrenFlag);
     ResponseData<?> clerk(String assignee);
     ResponseData<?> clerkApproval(Integer flag, String taskId);
-
     ResponseData<?> clientHistory();
-
     ResponseData<?> getDiagram(String processDefinitionId, String processInstanceId) throws IOException;
-
     ResponseData<?> getHistoricDetail(String processInstanceId);
 }

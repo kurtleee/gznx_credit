@@ -1,14 +1,11 @@
 package com.uniview.workflow.dto;
 
-import com.alibaba.fastjson2.JSON;
-import liquibase.pro.packaged.T;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.flowable.engine.history.HistoricProcessInstance;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author ：zx
