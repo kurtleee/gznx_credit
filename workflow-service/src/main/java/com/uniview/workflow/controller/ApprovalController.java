@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 /**
  * @author ：zx
  * @date ：Created in 2024/8/29 15:35
@@ -42,9 +44,9 @@ public class ApprovalController {
         return approvalService.administrativePosition();
     }
 
-    @GetMapping("/administrativeApproval/{taskId}")
-    public ResponseData<?> administrativeApproval(@PathVariable("taskId") String taskId) {
-        return approvalService.administrativeApproval(taskId);
+    @GetMapping("/administrativeApproval/{taskId}/{flag}")
+    public ResponseData<?> administrativeApproval(@PathVariable("taskId") String taskId, @PathVariable("flag") Integer flag) {
+        return approvalService.administrativeApproval(taskId, flag);
     }
 
     @GetMapping("/department/{assignee}")
@@ -65,5 +67,19 @@ public class ApprovalController {
     @GetMapping("/clerkApproval/{flag}/{taskId}")
     public ResponseData<?> clerkApproval(@PathVariable("flag") Integer flag, @PathVariable("taskId") String taskId) {
         return approvalService.clerkApproval(flag, taskId);
+    }
+
+    @GetMapping("/clientHistory")
+    public ResponseData<?> clientHistory() {
+        return approvalService.clientHistory();
+    }
+
+    @GetMapping("/getDiagram/{processDefinitionId}/{processInstanceId}")
+    public ResponseData<?> getDiagram(@PathVariable("processDefinitionId") String processDefinitionId, @PathVariable("processInstanceId") String processInstanceId) throws IOException {
+        return approvalService.getDiagram(processDefinitionId, processInstanceId);
+    }
+    @GetMapping("/getHistoricDetail/{processInstanceId}")
+    public ResponseData<?> getHistoricDetail(@PathVariable("processInstanceId") String processInstanceId){
+        return approvalService.getHistoricDetail(processInstanceId);
     }
 }

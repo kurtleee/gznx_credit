@@ -2,17 +2,20 @@ package com.uniview.workflow.service.impl;
 
 import com.uniview.common.utils.ResponseData;
 import com.uniview.common.utils.ResponseEnum;
+import com.uniview.workflow.dto.HistoryDTO;
 import com.uniview.workflow.dto.TaskDTO;
+import com.uniview.workflow.dto.TestDTO;
 import com.uniview.workflow.service.ApprovalService;
-import org.flowable.engine.RuntimeService;
-import org.flowable.engine.TaskService;
+import org.flowable.bpmn.model.BpmnModel;
+import org.flowable.engine.*;
+import org.flowable.engine.history.HistoricProcessInstance;
+import org.flowable.image.ProcessDiagramGenerator;
 import org.flowable.task.api.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -29,12 +32,20 @@ public class ApprovalServiceImpl implements ApprovalService {
     private RuntimeService runtimeService;
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private HistoryService historyService;
+    @Autowired
+    private ProcessEngine processEngine;
+    @Autowired
+    private RepositoryService repositoryService;
+
     @Override
     public ResponseData<?> startApproval() {
         Map<String, Object> variables = new HashMap<>();
-        variables.put("flag", 0);
-        variables.put("childrenFlag", 0);
-        variables.put("info","此处填入客户的申请信息对象");
+        variables.put("flag", 1);
+        variables.put("childrenFlag", 1);
+        // TestDTO为申请信息的对象，仅作测试
+        variables.put("info", new TestDTO(1,"zhangsan",new Date()));
         runtimeService.startProcessInstanceByKey("gznx", variables);
         return new ResponseData<>().success();
     }
@@ -48,7 +59,7 @@ public class ApprovalServiceImpl implements ApprovalService {
 
     @Override
     public ResponseData<?> clientManagerApproval(String taskId, Integer flag) {
-        //此处可以将flag改变状态，0则审批不通过，流程中止，否则根据路由规则流向其他流程（flag=1或2或3）
+        //此处可以将flag改变状态，0则审批不通过
         runtimeService.setVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "flag", flag);
         taskService.complete(taskId);
         return new ResponseData<>().success();
@@ -62,8 +73,8 @@ public class ApprovalServiceImpl implements ApprovalService {
     }
 
     @Override
-    public ResponseData<?> administrativeApproval(String taskId) {
-        Integer flag = runtimeService.getVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "flag", Integer.class);
+    public ResponseData<?> administrativeApproval(String taskId, Integer flag) {
+        runtimeService.setVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "flag", flag);
         taskService.complete(taskId);
         if (flag == 0) {
             // 修改申请信息对象的审批状态字段
@@ -108,5 +119,50 @@ public class ApprovalServiceImpl implements ApprovalService {
         // 根据flag改变申请信息中的审批状态字段
         taskService.complete(taskId);
         return new ResponseData<>().success();
+    }
+
+    @Override
+    public ResponseData<?> clientHistory() {
+        List<HistoricProcessInstance> historicList = historyService.createHistoricProcessInstanceQuery().includeProcessVariables().list();
+        List<HistoryDTO> historyDTOList = historicList.stream().map(HistoryDTO::new).collect(Collectors.toList());
+        return new ResponseData<>().success(historyDTOList);
+    }
+
+    @Override
+    public ResponseData<?> getDiagram(String processDefinitionId, String processInstanceId) throws IOException {
+        List<String> activeActivityIds = runtimeService.getActiveActivityIds(processInstanceId);
+        BpmnModel bpmnModel = repositoryService.getBpmnModel(processDefinitionId);
+        ProcessDiagramGenerator diagramGenerator = processEngine.getProcessEngineConfiguration().getProcessDiagramGenerator();
+        InputStream diagram = diagramGenerator.generateDiagram(
+                bpmnModel,
+                "png",
+                activeActivityIds,
+                Collections.emptyList(),
+                processEngine.getProcessEngineConfiguration().getActivityFontName(),
+                processEngine.getProcessEngineConfiguration().getLabelFontName(),
+                processEngine.getProcessEngineConfiguration().getAnnotationFontName(),
+                processEngine.getProcessEngineConfiguration().getClassLoader(),
+                1.0,
+                true
+        );
+        File file = new File("E:\\WeChatProjects\\miniprogram-6\\images\\process.png");
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = diagram.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+            fileOutputStream.write(buffer, 0, bytesRead);
+        }
+        byte[] imageBytes = outputStream.toByteArray();
+        String imageBase64 = Base64.getEncoder().encodeToString(imageBytes);
+        return new ResponseData<>().success(imageBase64);
+    }
+
+    @Override
+    public ResponseData<?> getHistoricDetail(String processInstanceId) {
+        HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery().includeProcessVariables().processInstanceId(processInstanceId).singleResult();
+        HistoryDTO historyDTO = new HistoryDTO(historicProcessInstance);
+        return new ResponseData<>().success(historyDTO);
     }
 }
