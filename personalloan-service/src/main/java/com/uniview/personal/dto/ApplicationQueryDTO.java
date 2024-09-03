@@ -1,7 +1,6 @@
 package com.uniview.personal.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -13,7 +12,7 @@ import java.util.Date;
  * @Filename：CreditApplicationDTO
  * @Description：
  */
-public class CreditApplicationDTO implements Serializable {
+public class ApplicationQueryDTO implements Serializable {
     /**
      * 客户名称
      */
@@ -47,10 +46,14 @@ public class CreditApplicationDTO implements Serializable {
     private String clientManagerName;
 
     /**
-     * 申请日期
+     * 最小申请日期
      */
-    private Date applicationDate;
+    private Date minApplicationDate;
 
+    /**
+     * 最大申请日期
+     */
+    private Date maxApplicationDate;
 
     /**
      * 审批状态

@@ -1,5 +1,7 @@
 package com.uniview.personal.service;
 
+import com.uniview.common.utils.ParamData;
+import com.uniview.common.utils.ResponseData;
 import com.uniview.personal.pojo.LoanExtension;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -10,4 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface LoanExtensionService extends IService<LoanExtension> {
 
+    ResponseData<?> findAll(ParamData<?> paramData);
+
+    ResponseData<?> findByIOU(String iou);
 }

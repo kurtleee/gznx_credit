@@ -47,6 +47,11 @@ public class CustomerDto {
         private String address;
 
         /**
+         * 信用等级
+         */
+        private Integer creditRating;
+
+        /**
          * 创建时间
          */
         private Date createdAt;

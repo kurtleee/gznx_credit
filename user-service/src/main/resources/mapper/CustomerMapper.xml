@@ -11,6 +11,7 @@
             <result property="idNumber" column="id_number" jdbcType="VARCHAR"/>
             <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
             <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="creditRating" column="credit_rating" jdbcType="INTEGER"/>
             <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
             <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
     </resultMap>
@@ -18,6 +19,6 @@
     <sql id="Base_Column_List">
         customer_id,customer_name,customer_type,
         id_number,phone_number,address,
-        created_at,updated_at
+        credit_rating,created_at,updated_at
     </sql>
 </mapper>

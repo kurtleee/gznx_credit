@@ -8,7 +8,7 @@
             <id property="applicationId" column="application_id" jdbcType="INTEGER"/>
             <result property="entryId" column="entry_id" jdbcType="VARCHAR"/>
             <result property="clientNumber" column="client_number" jdbcType="INTEGER"/>
-            <result property="productName" column="product_name" jdbcType="INTEGER"/>
+            <result property="productNumber" column="product_number" jdbcType="INTEGER"/>
             <result property="creditRating" column="credit_rating" jdbcType="INTEGER"/>
             <result property="creditAmount" column="credit_amount" jdbcType="DECIMAL"/>
             <result property="creditValidityPeriod" column="credit_validity_period" jdbcType="INTEGER"/>
@@ -16,7 +16,7 @@
             <result property="loanAmount" column="loan_amount" jdbcType="DECIMAL"/>
             <result property="termType" column="term_type" jdbcType="INTEGER"/>
             <result property="loanTerm" column="loan_term" jdbcType="INTEGER"/>
-            <result property="clientManager" column="client_manager" jdbcType="INTEGER"/>
+            <result property="clientManager" column="client_manager" jdbcType="VARCHAR"/>
             <result property="applicationDate" column="application_date" jdbcType="TIMESTAMP"/>
             <result property="mainNetPoint" column="main_net_point" jdbcType="INTEGER"/>
             <result property="approvalStatus" column="approval_status" jdbcType="INTEGER"/>
@@ -24,9 +24,64 @@
 
     <sql id="Base_Column_List">
         application_id,entry_id,client_number,
-        product_name,credit_rating,credit_amount,
+        product_number,credit_rating,credit_amount,
         credit_validity_period,credit_effective_date,loan_amount,
         term_type,loan_term,client_manager,
         application_date,main_net_point,approval_status
     </sql>
+    <select id="getApplications" resultType="com.uniview.personal.dto.ApplicationResponseDTO">
+        SELECT
+        ca.application_id,
+        ca.entry_id,
+        ca.client_number,
+        c.customer_name,
+        p.product_name,
+        c.credit_rating,
+        ca.credit_amount,
+        ca.credit_validity_period,
+        ca.credit_effective_date,
+        ca.loan_amount,
+        ca.term_type,
+        ca.loan_term,
+        u.username,
+        ca.application_date,
+        mnp.main_net_point_name,
+        ca.approval_status
+        FROM
+        credit_applications ca,
+        customer c,
+        product p,
+        user u,
+        main_net_point mnp,
+        <where>
+            ca.client_number = c.customer_id AND ca.product_number = p.product_id AND ca.client_manager = u.user_id AND ca.main_net_point = mnp.main_net_point_id
+            <if test="clientNumber!= null">
+                AND ca.client_number = #{clientNumber}
+            </if>
+            <if test="entryId!= null">
+                AND ca.entry_id = #{entryId}
+            </if>
+            <if test="applicationId != null">
+                AND ca.application_id = #{applicationId}
+            </if>
+            <if test="creditRating != null">
+                AND c.credit_rating = #{creditRating}
+            </if>
+            <if test="productNumber != null">
+                AND ca.product_number = #{productNumber}
+            </if>
+            <if test="approvalStatus != null">
+                AND ca.approval_status = #{approvalStatus}
+            </if>
+            <if test="clientManager != null">
+                AND ca.client_manager = #{clientManager}
+            </if>
+            <if test="minApplicationDate != null">
+                AND ca.application_date &gt;= #{minApplicationDate}
+            </if>
+            <if test="maxApplicationDate != null">
+                AND ca.application_date &gt;= #{maxApplicationDate}
+            </if>
+        </where>
+    </select>
 </mapper>

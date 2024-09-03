@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.personal.mapper.CustomerDetailMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.personal.pojo.CustomerDetail">
+            <id property="customerDetailId" column="customer_detail_id" jdbcType="INTEGER"/>
+            <result property="customerId" column="customer_id" jdbcType="BIGINT"/>
+            <result property="customerName" column="customer_name" jdbcType="VARCHAR"/>
+            <result property="customerType" column="customer_type" jdbcType="INTEGER"/>
+            <result property="sex" column="sex" jdbcType="INTEGER"/>
+            <result property="ecifNumber" column="ecif_number" jdbcType="INTEGER"/>
+            <result property="idType" column="id_type" jdbcType="INTEGER"/>
+            <result property="idNumber" column="id_number" jdbcType="VARCHAR"/>
+            <result property="checkTrue" column="check_true" jdbcType="INTEGER"/>
+            <result property="idStart" column="id_start" jdbcType="DATE"/>
+            <result property="idEnd" column="id_end" jdbcType="DATE"/>
+            <result property="idInstitution" column="id_institution" jdbcType="VARCHAR"/>
+            <result property="industryType" column="industry_type" jdbcType="VARCHAR"/>
+            <result property="bankRelationship" column="bank_relationship" jdbcType="INTEGER"/>
+            <result property="holdingRatio" column="holding_ratio" jdbcType="DECIMAL"/>
+            <result property="bankPosition" column="bank_position" jdbcType="INTEGER"/>
+            <result property="householdSize" column="household_size" jdbcType="INTEGER"/>
+            <result property="shareholderWhether" column="shareholder_whether" jdbcType="INTEGER"/>
+            <result property="shareholderTime" column="shareholder_time" jdbcType="TIMESTAMP"/>
+            <result property="shareholderInstitution" column="shareholder_institution" jdbcType="VARCHAR"/>
+            <result property="shareholderAmount" column="shareholder_amount" jdbcType="DECIMAL"/>
+            <result property="ethnic" column="ethnic" jdbcType="VARCHAR"/>
+            <result property="domicile" column="domicile" jdbcType="VARCHAR"/>
+            <result property="domicileDetail" column="domicile_detail" jdbcType="VARCHAR"/>
+            <result property="bornDate" column="born_date" jdbcType="TIMESTAMP"/>
+            <result property="politicalOutlook" column="political_outlook" jdbcType="INTEGER"/>
+            <result property="highestDegree" column="highest_degree" jdbcType="VARCHAR"/>
+            <result property="fiveWhether" column="five_whether" jdbcType="INTEGER"/>
+            <result property="socialSecuritySituation" column="social_security_situation" jdbcType="INTEGER"/>
+            <result property="livingSituation" column="living_situation" jdbcType="INTEGER"/>
+            <result property="livingAddress" column="living_address" jdbcType="VARCHAR"/>
+            <result property="livingAddressDetail" column="living_address_detail" jdbcType="VARCHAR"/>
+            <result property="highestEducation" column="highest_education" jdbcType="INTEGER"/>
+            <result property="phoneNumber" column="phone_number" jdbcType="VARCHAR"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="creditRating" column="credit_rating" jdbcType="INTEGER"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+            <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        customer_detail_id,customer_id,customer_name,
+        customer_type,sex,ecif_number,
+        id_type,id_number,check_true,
+        id_start,id_end,id_institution,
+        industry_type,bank_relationship,holding_ratio,
+        bank_position,household_size,shareholder_whether,
+        shareholder_time,shareholder_institution,shareholder_amount,
+        ethnic,domicile,domicile_detail,
+        born_date,political_outlook,highest_degree,
+        five_whether,social_security_situation,living_situation,
+        living_address,living_address_detail,highest_education,
+        phone_number,address,credit_rating,
+        created_at,updated_at
+    </sql>
+</mapper>

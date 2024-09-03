@@ -10,7 +10,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 
+ * 贷款展期表
  * @TableName loan_extension
  */
 @TableName(value ="loan_extension")
