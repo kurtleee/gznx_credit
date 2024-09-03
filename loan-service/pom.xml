@@ -19,6 +19,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.uniview.common</groupId>
+            <artifactId>common-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--        添加数据库连接驱动类依赖后，
             需要在当前模块配置文件中加入数据地址、用户名密码等信息
             否则主类启动时会报错-->
