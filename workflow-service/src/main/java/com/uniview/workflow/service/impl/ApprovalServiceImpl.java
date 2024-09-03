@@ -4,7 +4,8 @@ import com.uniview.common.utils.ResponseData;
 import com.uniview.common.utils.ResponseEnum;
 import com.uniview.workflow.dto.HistoryDTO;
 import com.uniview.workflow.dto.TaskDTO;
-import com.uniview.workflow.dto.TestDTO;
+import com.uniview.workflow.dto.CreditApplicationsDTO;
+import com.uniview.workflow.feign.ApplicationFeign;
 import com.uniview.workflow.service.ApprovalService;
 import org.flowable.bpmn.model.BpmnModel;
 import org.flowable.engine.*;
@@ -38,14 +39,15 @@ public class ApprovalServiceImpl implements ApprovalService {
     private ProcessEngine processEngine;
     @Autowired
     private RepositoryService repositoryService;
+    @Autowired
+    private ApplicationFeign applicationFeign;
 
     @Override
-    public ResponseData<?> startApproval() {
+    public ResponseData<?> startApproval(CreditApplicationsDTO applicationsDTO) {
         Map<String, Object> variables = new HashMap<>();
         variables.put("flag", 1);
         variables.put("childrenFlag", 1);
-        // TestDTO为申请信息的对象，仅作测试
-        variables.put("info", new TestDTO(1,"zhangsan",new Date()));
+        variables.put("info", applicationsDTO);
         runtimeService.startProcessInstanceByKey("gznx", variables);
         return new ResponseData<>().success();
     }
@@ -75,17 +77,24 @@ public class ApprovalServiceImpl implements ApprovalService {
     @Override
     public ResponseData<?> administrativeApproval(String taskId, Integer flag) {
         runtimeService.setVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "flag", flag);
-        taskService.complete(taskId);
         if (flag == 0) {
             // 修改申请信息对象的审批状态字段
+            CreditApplicationsDTO info = runtimeService.getVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "info", CreditApplicationsDTO.class);
+            info.setApprovalStatus(0);
+            applicationFeign.updateStatus(info);
+            taskService.complete(taskId);
             return new ResponseData<>().fail(ResponseEnum.DISAPPROVAL);
         } else if (flag == 1) {
+            taskService.complete(taskId);
             return new ResponseData<>().success();
         } else if (flag == 2) {
+            taskService.complete(taskId);
             return new ResponseData<>().success();
         } else if (flag == 3) {
+            taskService.complete(taskId);
             return new ResponseData<>().success();
         }
+        taskService.complete(taskId);
         return new ResponseData<>().fail(ResponseEnum.FAIL);
     }
 
@@ -99,11 +108,15 @@ public class ApprovalServiceImpl implements ApprovalService {
     @Override
     public ResponseData<?> departmentApproval(String taskId, Integer childrenFlag) {
         runtimeService.setVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "childrenFlag", childrenFlag);
-        taskService.complete(taskId);
         if (childrenFlag == 0) {
             // 修改申请信息对象的审批状态字段
+            CreditApplicationsDTO info = runtimeService.getVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "info", CreditApplicationsDTO.class);
+            info.setApprovalStatus(0);
+            applicationFeign.updateStatus(info);
+            taskService.complete(taskId);
             return new ResponseData<>().fail(ResponseEnum.DISAPPROVAL);
         }
+        taskService.complete(taskId);
         return new ResponseData<>().success();
     }
 
@@ -116,7 +129,10 @@ public class ApprovalServiceImpl implements ApprovalService {
 
     @Override
     public ResponseData<?> clerkApproval(Integer flag, String taskId) {
-        // 根据flag改变申请信息中的审批状态字段
+        // 根据flag改变申请信息中的审批状态字段，1为通过，0不通过
+        CreditApplicationsDTO info = runtimeService.getVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "info", CreditApplicationsDTO.class);
+        info.setApprovalStatus(flag);
+        applicationFeign.updateStatus(info);
         taskService.complete(taskId);
         return new ResponseData<>().success();
     }

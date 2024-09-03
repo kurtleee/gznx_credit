@@ -8,7 +8,7 @@
             <id property="applicationId" column="application_id" jdbcType="INTEGER"/>
             <result property="entryId" column="entry_id" jdbcType="VARCHAR"/>
             <result property="clientNumber" column="client_number" jdbcType="INTEGER"/>
-            <result property="productName" column="product_name" jdbcType="INTEGER"/>
+            <result property="productNumber" column="product_number" jdbcType="INTEGER"/>
             <result property="creditRating" column="credit_rating" jdbcType="INTEGER"/>
             <result property="creditAmount" column="credit_amount" jdbcType="DECIMAL"/>
             <result property="creditValidityPeriod" column="credit_validity_period" jdbcType="INTEGER"/>
@@ -16,17 +16,20 @@
             <result property="loanAmount" column="loan_amount" jdbcType="DECIMAL"/>
             <result property="termType" column="term_type" jdbcType="INTEGER"/>
             <result property="loanTerm" column="loan_term" jdbcType="INTEGER"/>
-            <result property="clientManager" column="client_manager" jdbcType="INTEGER"/>
+            <result property="clientManager" column="client_manager" jdbcType="BIGINT"/>
             <result property="applicationDate" column="application_date" jdbcType="TIMESTAMP"/>
-            <result property="mainNetPoint" column="main_net_point" jdbcType="INTEGER"/>
+            <result property="mainNetPoint" column="main_net_point" jdbcType="VARCHAR"/>
             <result property="approvalStatus" column="approval_status" jdbcType="INTEGER"/>
+            <result property="assignee" column="assignee" jdbcType="VARCHAR"/>
+            <result property="advice" column="advice" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         application_id,entry_id,client_number,
-        product_name,credit_rating,credit_amount,
+        product_number,credit_rating,credit_amount,
         credit_validity_period,credit_effective_date,loan_amount,
         term_type,loan_term,client_manager,
-        application_date,main_net_point,approval_status
+        application_date,main_net_point,approval_status,
+        assignee,advice
     </sql>
 </mapper>

@@ -1,14 +1,11 @@
 package com.uniview.workflow.dto;
 
-import com.alibaba.fastjson2.JSON;
-import liquibase.pro.packaged.T;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.flowable.engine.history.HistoricProcessInstance;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author ：zx
@@ -26,10 +23,7 @@ public class HistoryDTO {
     private String processDefinitionId;
     private Date startTime;
     private Date endTime;
-    /**
-     * 申请信息对象，暂时用TestDTO代替
-     */
-    private TestDTO info;
+    private CreditApplicationsDTO info;
 
     public HistoryDTO(HistoricProcessInstance historicProcessInstance) {
         this.historyId = historicProcessInstance.getId();
@@ -37,6 +31,6 @@ public class HistoryDTO {
         this.processDefinitionId = historicProcessInstance.getProcessDefinitionId();
         this.startTime = historicProcessInstance.getStartTime();
         this.endTime = historicProcessInstance.getEndTime();
-        this.info = (TestDTO) historicProcessInstance.getProcessVariables().get("info");
+        this.info = (CreditApplicationsDTO) historicProcessInstance.getProcessVariables().get("info");
     }
 }

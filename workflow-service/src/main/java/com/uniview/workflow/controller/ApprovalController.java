@@ -1,11 +1,10 @@
 package com.uniview.workflow.controller;
 
 import com.uniview.common.utils.ResponseData;
+import com.uniview.workflow.dto.CreditApplicationsDTO;
 import com.uniview.workflow.service.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -19,14 +18,15 @@ import java.io.IOException;
  * @version:
  */
 @RestController
+@RequestMapping("/personal")
 public class ApprovalController {
 
     @Autowired
     private ApprovalService approvalService;
 
-    @GetMapping("/startApproval")
-    public ResponseData<?> startApproval() {
-        return approvalService.startApproval();
+    @PostMapping("/startApproval")
+    public ResponseData<?> startApproval(@RequestBody CreditApplicationsDTO creditApplicationsDTO) {
+        return approvalService.startApproval(creditApplicationsDTO);
     }
 
     @GetMapping("/clientManager")
