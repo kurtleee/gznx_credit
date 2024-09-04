@@ -79,11 +79,7 @@ public class ApprovalServiceImpl implements ApprovalService {
         runtimeService.setVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "flag", flag);
         if (flag == 0) {
             // 修改申请信息对象的审批状态字段
-            CreditApplicationsDTO info = runtimeService.getVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "info", CreditApplicationsDTO.class);
-            info.setApprovalStatus(0);
-            applicationFeign.updateStatus(info);
-            taskService.complete(taskId);
-            return new ResponseData<>().fail(ResponseEnum.DISAPPROVAL);
+            return setInfoStatus(taskId);
         } else if (flag == 1) {
             taskService.complete(taskId);
             return new ResponseData<>().success();
@@ -98,6 +94,14 @@ public class ApprovalServiceImpl implements ApprovalService {
         return new ResponseData<>().fail(ResponseEnum.FAIL);
     }
 
+    private ResponseData<?> setInfoStatus(String taskId) {
+        CreditApplicationsDTO info = runtimeService.getVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "info", CreditApplicationsDTO.class);
+        info.setApprovalStatus(0);
+        applicationFeign.updateStatus(info);
+        taskService.complete(taskId);
+        return new ResponseData<>().fail(ResponseEnum.DISAPPROVAL);
+    }
+
     @Override
     public ResponseData<?> department(String assignee) {
         List<Task> taskList = taskService.createTaskQuery().taskAssignee(assignee).includeProcessVariables().list();
@@ -110,11 +114,7 @@ public class ApprovalServiceImpl implements ApprovalService {
         runtimeService.setVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "childrenFlag", childrenFlag);
         if (childrenFlag == 0) {
             // 修改申请信息对象的审批状态字段
-            CreditApplicationsDTO info = runtimeService.getVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "info", CreditApplicationsDTO.class);
-            info.setApprovalStatus(0);
-            applicationFeign.updateStatus(info);
-            taskService.complete(taskId);
-            return new ResponseData<>().fail(ResponseEnum.DISAPPROVAL);
+            return setInfoStatus(taskId);
         }
         taskService.complete(taskId);
         return new ResponseData<>().success();
