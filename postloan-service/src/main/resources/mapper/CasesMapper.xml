@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.postloan.mapper.CasesMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.postloan.pojo.Cases">
+            <id property="caseId" column="case_id" jdbcType="INTEGER"/>
+            <result property="caseNumber" column="case_number" jdbcType="VARCHAR"/>
+            <result property="customerId" column="customer_id" jdbcType="INTEGER"/>
+            <result property="caseDetails" column="case_details" jdbcType="VARCHAR"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        case_id,case_number,customer_id,
+        case_details,created_at
+    </sql>
+    <insert id="insertCase">
+        INSERT INTO cases (case_number, customer_id, case_details, created_at)
+        VALUES (#{caseNumber}, #{customerId}, #{caseDetails}, CURRENT_TIMESTAMP)
+    </insert>
+</mapper>

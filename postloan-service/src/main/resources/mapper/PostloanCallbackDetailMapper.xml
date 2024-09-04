@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.postloan.mapper.PostloanCallbackDetailMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.postloan.pojo.PostloanCallbackDetail">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="taskNamber" column="task_namber" jdbcType="VARCHAR"/>
+            <result property="contractNumber" column="contract_number" jdbcType="VARCHAR"/>
+            <result property="loanNumber" column="loan_number" jdbcType="VARCHAR"/>
+            <result property="customerNumber" column="customer_number" jdbcType="INTEGER"/>
+            <result property="customerName" column="customer_name" jdbcType="VARCHAR"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="loanStartTime" column="loan_start_time" jdbcType="TIMESTAMP"/>
+            <result property="loanEndTime" column="loan_end_time" jdbcType="TIMESTAMP"/>
+            <result property="loanAmount" column="loan_amount" jdbcType="VARCHAR"/>
+            <result property="loanPurpose" column="loan_purpose" jdbcType="VARCHAR"/>
+            <result property="selfUseWhether" column="self_use_whether" jdbcType="INTEGER"/>
+            <result property="purposeWhether" column="purpose_whether" jdbcType="VARCHAR"/>
+            <result property="nameWherther" column="name_wherther" jdbcType="VARCHAR"/>
+            <result property="ortherDescription" column="orther_description" jdbcType="VARCHAR"/>
+            <result property="taskStartTime" column="task_start_time" jdbcType="TIMESTAMP"/>
+            <result property="taskEndTime" column="task_end_time" jdbcType="TIMESTAMP"/>
+            <result property="registrationTime" column="registration_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,task_namber,contract_number,
+        loan_number,customer_number,customer_name,
+        product_name,loan_start_time,loan_end_time,
+        loan_amount,loan_purpose,self_use_whether,
+        purpose_whether,name_wherther,orther_description,
+        task_start_time,task_end_time,registration_time
+    </sql>
+</mapper>
