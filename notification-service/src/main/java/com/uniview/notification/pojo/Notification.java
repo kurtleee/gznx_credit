@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 
  * @TableName notification
  */
 @Data
@@ -30,7 +29,7 @@ public class Notification implements Serializable {
      */
     private Long recipientId;
     /**
-     *  收件人
+     * 收件人
      */
 
     private String sendTo;

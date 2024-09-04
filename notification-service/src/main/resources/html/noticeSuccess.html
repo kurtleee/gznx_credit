@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>银行催收通知</title>
+</head>
+<body>
+<div align="center">
+    <h2>贵州省农村信用社</h2>
+    <h2>信贷业务到期催收通知书</h2>
+</div>
+
+<p>尊敬的<span th:text="${borrower}">贷款人</span>：</p>
+<p>根据<span th:text="${startTime}">借款时间</span>
+    借款/银行承兑汇票/合同(协议)，贵单位向我行(社)借款/申请的
+    <span th:text="${productName}">信贷业务类别</span>
+    <span th:text="${loanPrice}">贷款金额</span>元。此项信贷业务将于
+    <span th:text="${expireTime}">借款到期时间</span>到期。请你方抓紧落实资金总计
+    <span th:text="${loanPrice}">贷款金额</span>元本金、
+    <span th:text="${loanInterest}">贷款利息</span>元利息，按期偿还。否则，我行（社）将采取下列相应措施:
+</p>
+<ol>
+    <li>降低贵单位信用等级。</li>
+    <li>停止受理贷款、银行承兑汇票等融资业务申请。</li>
+    <li>报请人民银行列入信用不良企业名单，向社会公布。</li>
+    <li>依法向法院申请支付令、申请强制执行或直接提起诉讼，追偿贷款本息。</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;特此通知</p>
+<p>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    贷款人:<span th:text="${borrower}">贷款人</span>
+</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${sendTime}">邮件发送日期</span></p>
+</body>
+</html>
