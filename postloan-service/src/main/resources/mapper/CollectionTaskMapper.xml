@@ -9,15 +9,106 @@
             <result property="loanId" column="loan_id" jdbcType="BIGINT"/>
             <result property="taskType" column="task_type" jdbcType="VARCHAR"/>
             <result property="taskStatus" column="task_status" jdbcType="VARCHAR"/>
-            <result property="assignedTo" column="assigned_to" jdbcType="BIGINT"/>
             <result property="dueDate" column="due_date" jdbcType="DATE"/>
             <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
             <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+            <result property="mainNetPointId" column="main_net_point_id" jdbcType="INTEGER"/>
+            <result property="taskMethods" column="task_methods" jdbcType="VARCHAR"/>
+            <result property="daysBeforeDue" column="days_before_due" jdbcType="INTEGER"/>
+            <result property="overdueStartDays" column="overdue_start_days" jdbcType="INTEGER"/>
+            <result property="ruleStatus" column="rule_status" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="ruleNumber" column="rule_number" jdbcType="VARCHAR"/>
+            <result property="overdueCutoffDays" column="overdue_cutoff_days" jdbcType="BIGINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         task_id,loan_id,task_type,
-        task_status,assigned_to,due_date,
-        created_at,updated_at
+        task_status,due_date,created_at,
+        updated_at,main_net_point_id,task_methods,
+        days_before_due,overdue_start_days,rule_status,
+        user_id,rule_number,overdue_cutoff_days
     </sql>
+    <insert id="insertCollectionTask">
+        INSERT INTO collection_task (loan_id, task_type,
+                                     task_status, due_date, created_at,
+                                     updated_at, main_net_point_id,
+                                     task_methods, days_before_due,
+                                     overdue_start_days, rule_status,
+                                     user_id, rule_number, overdue_cutoff_days)
+        VALUES (#{loanId}, #{taskType}, #{taskStatus}, #{dueDate},
+                #{createdAt}, #{updatedAt}, #{mainNetPointId}, #{taskMethods},
+                #{daysBeforeDue}, #{overdueStartDays}, #{ruleStatus}, #{userId},
+                #{ruleNumber}, #{overdueCutoffDays})
+    </insert>
+    <update id="updateRuleStatus">
+        UPDATE collection_task SET rule_status = #{ruleStatus} WHERE task_id = #{taskId}
+    </update>
+    <update id="updateCollectionPolicy">
+        UPDATE collection_task SET task_type = #{taskType},
+    </update>
+    <update id="updateCollectionTaskStatus">
+        UPDATE collection_task
+        SET task_status = #{taskStatus}
+        WHERE task_id = #{taskId}
+    </update>
+    <delete id="batchDelete">
+        DELETE FROM collection_task WHERE task_id IN
+        <foreach collection="taskIds" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+    <select id="queryAll" resultType="com.uniview.postloan.pojo.CollectionTask">
+        SELECT
+            task_id,
+            rule_number,
+            mnp.main_net_point_name,
+            task_type,
+            task_methods,
+            days_before_due,
+            overdue_start_days,
+            overdue_cutoff_days,
+            rule_status,
+            user_id,
+            updated_at
+        FROM collection_task
+                 LEFT JOIN main_net_point mnp ON collection_task.main_net_point_id = mnp.id
+    </select>
+    <select id="queryByCondition" resultType="com.uniview.postloan.dto.CollectionPolicyDto" parameterType="com.uniview.postloan.dto.CollectionPolicyDto">
+        SELECT
+        task_id,
+        rule_number,
+        mnp.main_net_point_name,
+        task_type,
+        task_methods,
+        days_before_due,
+        overdue_start_days,
+        overdue_cutoff_days,
+        rule_status,
+        user_id,
+        updated_at
+        FROM collection_task
+        LEFT JOIN main_net_point mnp ON collection_task.main_net_point_id = mnp.id
+        <where>
+            <if test="ruleNumber!=null and ruleNumber!=''">
+                AND rule_number LIKE concat('%',#{ruleNumber},'%')
+            </if>
+            <if test="taskType!=0  and taskType!=null">
+                AND task_type=#{taskType}
+            </if>
+            <if test="taskMethods!=0 and taskMethods!=null">
+                AND task_methods=#{taskMethods}
+            </if>
+            <if test="ruleStatus!=0 and ruleStatus!=null">
+                AND rule_status=#{ruleStatus}
+            </if>
+        </where>
+    </select>
+    <select id="findCollectionTaskById" resultType="com.uniview.postloan.pojo.CollectionTask">
+        SELECT * FROM collection_task WHERE task_id = #{taskId}
+    </select>
+    <select id="findAllCollectionTasks" resultType="com.uniview.postloan.pojo.CollectionTask">
+        SELECT * FROM collection_task
+    </select>
+
 </mapper>

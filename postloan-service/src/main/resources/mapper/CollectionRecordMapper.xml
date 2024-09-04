@@ -19,4 +19,22 @@
         contact_method,contact_result,created_at,
         updated_at
     </sql>
+    <insert id="insertCollectionRecord">
+        INSERT INTO collection_record
+        (task_id,contact_date,contact_method,contact_result,created_at,updated_at)
+        VALUES
+        (#{taskId},#{contactDate},#{contactMethod},#{contactResult},#{createdAt},#{updatedAt})
+    </insert>
+    <select id="findCollectionRecordsByTaskId" resultType="com.uniview.postloan.pojo.CollectionRecord">
+        SELECT
+            c_record.record_id AS collection_record_id,
+            c_task.loan_id,
+            l.loan_status
+        FROM
+            collection_record AS c_record
+                INNER JOIN
+            collection_task AS c_task ON c_record.task_id = c_task.task_id
+                INNER JOIN
+            loan AS l ON c_task.loan_id = l.loan_id;
+    </select>
 </mapper>

@@ -6,12 +6,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
 /**
- * 
+ * 催收记录
  * @TableName collection_record
  */
 @TableName(value ="collection_record")
+@Data
 public class CollectionRecord implements Serializable {
     /**
      * 催收记录ID
@@ -48,107 +50,13 @@ public class CollectionRecord implements Serializable {
      * 更新时间
      */
     private Date updatedAt;
+    /**
+     * 客户Id
+     */
+    private Long customerId;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 催收记录ID
-     */
-    public Long getRecordId() {
-        return recordId;
-    }
-
-    /**
-     * 催收记录ID
-     */
-    public void setRecordId(Long recordId) {
-        this.recordId = recordId;
-    }
-
-    /**
-     * 催收任务ID
-     */
-    public Long getTaskId() {
-        return taskId;
-    }
-
-    /**
-     * 催收任务ID
-     */
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
-    }
-
-    /**
-     * 联系日期
-     */
-    public Date getContactDate() {
-        return contactDate;
-    }
-
-    /**
-     * 联系日期
-     */
-    public void setContactDate(Date contactDate) {
-        this.contactDate = contactDate;
-    }
-
-    /**
-     * 联系方式
-     */
-    public String getContactMethod() {
-        return contactMethod;
-    }
-
-    /**
-     * 联系方式
-     */
-    public void setContactMethod(String contactMethod) {
-        this.contactMethod = contactMethod;
-    }
-
-    /**
-     * 联系结果
-     */
-    public String getContactResult() {
-        return contactResult;
-    }
-
-    /**
-     * 联系结果
-     */
-    public void setContactResult(String contactResult) {
-        this.contactResult = contactResult;
-    }
-
-    /**
-     * 创建时间
-     */
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * 创建时间
-     */
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    /**
-     * 更新时间
-     */
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    /**
-     * 更新时间
-     */
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 
     @Override
     public boolean equals(Object that) {

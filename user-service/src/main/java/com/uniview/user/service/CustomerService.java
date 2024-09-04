@@ -25,4 +25,11 @@ public interface CustomerService extends IService<Customer> {
     BigDecimal getCreditLimit(Integer creditRating);
 
     Integer getCreditTerm(Integer creditRating);
+
+    /**
+     * 根据客户ID查询客户信息
+     * @param customerId
+     * @return
+     */
+    Customer getCustomerById(Long customerId);
 }
