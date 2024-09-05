@@ -110,5 +110,11 @@
     <select id="findAllCollectionTasks" resultType="com.uniview.postloan.pojo.CollectionTask">
         SELECT * FROM collection_task
     </select>
+    <select id="findLoanStatus" resultType="com.uniview.postloan.dto.LoanDto">
+        SELECT l.loan_status,l.customer_id
+        FROM loan l
+                 JOIN collection_task ct ON l.loan_id = ct.loan_id
+        WHERE ct.task_id = #{taskId};
+    </select>
 
 </mapper>

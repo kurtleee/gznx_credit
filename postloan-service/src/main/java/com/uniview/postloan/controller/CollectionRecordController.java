@@ -21,5 +21,10 @@ public class CollectionRecordController {
     public ResponseData<?> getCollectionRecordList(@RequestBody CollectionRecord collectionRecord) {
         return collectionRecordService.getCollectionRecordList(collectionRecord);
     }
+    //新增催收记录
+    @PostMapping("/addCollectionRecord")
+    public ResponseData<?> addCollectionRecord(@RequestBody CollectionRecord collectionRecord) {
+        return collectionRecordService.addCollectionRecord(collectionRecord);
+    }
 
 }

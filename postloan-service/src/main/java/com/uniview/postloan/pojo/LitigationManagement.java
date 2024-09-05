@@ -18,7 +18,7 @@ public class LitigationManagement implements Serializable {
     /**
      * 诉讼ID，主键
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer litigationId;
 
     /**

@@ -52,6 +52,10 @@ public class ApprovalServiceImpl implements ApprovalService {
         return new ResponseData<>().success();
     }
 
+    /**
+     * 客户经理节点下的待审批任务
+     * @return
+     */
     @Override
     public ResponseData<?> clientManager() {
         List<Task> taskList = taskService.createTaskQuery().taskAssignee("客户经理").includeProcessVariables().list();

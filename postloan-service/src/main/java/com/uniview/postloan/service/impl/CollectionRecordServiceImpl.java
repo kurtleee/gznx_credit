@@ -52,23 +52,29 @@ public class CollectionRecordServiceImpl extends ServiceImpl<CollectionRecordMap
         return new ResponseData<>().success(collectionRecordMapper.selectList(null));
     }
 
+    /**
+     * 增加催收记录
+     * @param collectionRecord
+     * @return
+     */
     @Override
     public ResponseData<?> addCollectionRecord(CollectionRecord collectionRecord) {
         //查询贷款表，根据贷款状态判定是否逾期
         Long taskId = collectionRecord.getTaskId();
-        CollectionTask collectionTask = collectionTaskMapper.selectById(taskId);
-        Long loanId = collectionTask.getLoanId();
-        ResponseData<LoanDto> loanById = loanFeign.getLoanById(loanId);
-        String loanStatus = loanById.getData().getLoanStatus();
+        LoanDto loanDto = collectionTaskMapper.findLoanStatus(taskId);
+        String loanStatus = loanDto.getLoanStatus();
         if ("未逾期".equals(loanStatus)){
             return new ResponseData<>().success();
         }
-        //如果未逾期，则将催收记录表中相应的记录更新为已催收
+        //贷款已逾期，发送通知
         NotificationDto notificationDto = new NotificationDto();
+        notificationDto.setSendTo("1583819217@qq.com");
+        notificationDto.setTitle("银行催收消息");
         //发送消息
         notificationDto.setMessage("您的贷款已逾期，请及时还款，否则将影响您的信用评级。");
         //接受人为客户
-        notificationDto.setRecipientId(loanById.getData().getCustomerId());
+//        notificationDto.setRecipientId(loanDto.getCustomerId());
+//        notificationDto.setRecipientId(loanById.getData().getCustomerId());
         //发送消息
         notificationFeign.sendSimpleNotification(notificationDto);
         //更新催收记录表
@@ -77,12 +83,15 @@ public class CollectionRecordServiceImpl extends ServiceImpl<CollectionRecordMap
         collectionRecord.setUpdatedAt(new Date());
         collectionRecord.setContactMethod("邮件催收");
         collectionRecord.setContactDate(new Date());
-        CustomerDto customerById = customerFeign.getCustomerById(loanById.getData().getCustomerId());
-        collectionRecord.setCustomerId(customerById.getCustomerId());
+        collectionRecord.setCustomerId(loanDto.getCustomerId());
+//        CustomerDto customerById = customerFeign.getCustomerById(loanDto.getCustomerId());
+//        CustomerDto customerById = customerFeign.getCustomerById(loanById.getData().getCustomerId());
+//        collectionRecord.setCustomerId(customerById.getCustomerId());
         save(collectionRecord);
         //更新诉讼管理表
         LitigationManagement litigationManagement = new LitigationManagement();
-        litigationManagement.setCustomerId(customerById.getCustomerId());
+        litigationManagement.setCustomerId(collectionRecord.getCustomerId());
+//        litigationManagement.setCustomerId(customerById.getCustomerId());
         litigationManagement.setLitigationStatus("已提交");
         litigationManagement.setInitiatedDate(new Date());
         litigationManagement.setExpirationDate(new Date());

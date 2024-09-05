@@ -71,6 +71,11 @@ public class PostloanFollowupList implements Serializable {
      */
     private String taskStatus;
 
+    /**
+     * 审批状态
+     */
+    private String approvalStatus;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -96,7 +101,8 @@ public class PostloanFollowupList implements Serializable {
             && (this.getTaskStartTime() == null ? other.getTaskStartTime() == null : this.getTaskStartTime().equals(other.getTaskStartTime()))
             && (this.getTaskEndTime() == null ? other.getTaskEndTime() == null : this.getTaskEndTime().equals(other.getTaskEndTime()))
             && (this.getRegistrationTime() == null ? other.getRegistrationTime() == null : this.getRegistrationTime().equals(other.getRegistrationTime()))
-            && (this.getTaskStatus() == null ? other.getTaskStatus() == null : this.getTaskStatus().equals(other.getTaskStatus()));
+            && (this.getTaskStatus() == null ? other.getTaskStatus() == null : this.getTaskStatus().equals(other.getTaskStatus()))
+            && (this.getApprovalStatus() == null ? other.getApprovalStatus() == null : this.getApprovalStatus().equals(other.getApprovalStatus()));
     }
 
     @Override
@@ -114,6 +120,7 @@ public class PostloanFollowupList implements Serializable {
         result = prime * result + ((getTaskEndTime() == null) ? 0 : getTaskEndTime().hashCode());
         result = prime * result + ((getRegistrationTime() == null) ? 0 : getRegistrationTime().hashCode());
         result = prime * result + ((getTaskStatus() == null) ? 0 : getTaskStatus().hashCode());
+        result = prime * result + ((getApprovalStatus() == null) ? 0 : getApprovalStatus().hashCode());
         return result;
     }
 
@@ -134,6 +141,7 @@ public class PostloanFollowupList implements Serializable {
         sb.append(", taskEndTime=").append(taskEndTime);
         sb.append(", registrationTime=").append(registrationTime);
         sb.append(", taskStatus=").append(taskStatus);
+        sb.append(", approvalStatus=").append(approvalStatus);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

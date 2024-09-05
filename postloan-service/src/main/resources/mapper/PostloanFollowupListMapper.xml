@@ -16,12 +16,13 @@
             <result property="taskEndTime" column="task_end_time" jdbcType="TIMESTAMP"/>
             <result property="registrationTime" column="registration_time" jdbcType="TIMESTAMP"/>
             <result property="taskStatus" column="task_status" jdbcType="VARCHAR"/>
+            <result property="approvalStatus" column="approval_status" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,customer_number,customer_name,
         identity_type,identity_namber,loan_amount,
         callback_person,task_start_time,task_end_time,
-        registration_time,task_status
+        registration_time,task_status,approval_status
     </sql>
 </mapper>

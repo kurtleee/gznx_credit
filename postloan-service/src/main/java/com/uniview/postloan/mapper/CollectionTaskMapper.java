@@ -1,6 +1,7 @@
 package com.uniview.postloan.mapper;
 
 import com.uniview.postloan.dto.CollectionPolicyDto;
+import com.uniview.postloan.dto.LoanDto;
 import com.uniview.postloan.pojo.CollectionTask;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -26,6 +27,7 @@ public interface CollectionTaskMapper extends BaseMapper<CollectionTask> {
      * @param task
      */
     void insertCollectionTask(CollectionTask task);
+    LoanDto findLoanStatus(Long taskId);
 }
 
 

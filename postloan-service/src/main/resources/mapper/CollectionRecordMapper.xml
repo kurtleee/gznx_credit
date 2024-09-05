@@ -37,4 +37,7 @@
                 INNER JOIN
             loan AS l ON c_task.loan_id = l.loan_id;
     </select>
+    <select id="findLoanStatus">
+
+    </select>
 </mapper>

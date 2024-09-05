@@ -20,6 +20,8 @@ public interface CollectionRecordMapper extends BaseMapper<CollectionRecord> {
     void insertCollectionRecord(CollectionRecord record);
     //根据任务id查询催收记录
     List<CollectionRecord> findCollectionRecordsByTaskId(int taskId);
+    //根据催收记录id查询催收记录
+
 
 }
 
