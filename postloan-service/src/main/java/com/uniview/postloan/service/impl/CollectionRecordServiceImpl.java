@@ -48,8 +48,8 @@ public class CollectionRecordServiceImpl extends ServiceImpl<CollectionRecordMap
     private CasesService casesService;
 
     @Override
-    public ResponseData<?> getCollectionRecordList(CollectionRecord collectionRecord) {
-        return new ResponseData<>().success(collectionRecordMapper.selectList(null));
+    public ResponseData<?> getCollectionRecordList() {
+        return new ResponseData<>().success(list());
     }
 
     /**

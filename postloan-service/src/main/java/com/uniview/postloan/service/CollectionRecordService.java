@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface CollectionRecordService extends IService<CollectionRecord> {
 
-    ResponseData<?> getCollectionRecordList(CollectionRecord collectionRecord);
+    ResponseData<?> getCollectionRecordList();
 
     /**
      * 新增催收记录

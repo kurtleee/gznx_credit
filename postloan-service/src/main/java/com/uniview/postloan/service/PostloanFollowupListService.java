@@ -1,5 +1,6 @@
 package com.uniview.postloan.service;
 
+import com.uniview.common.utils.ResponseData;
 import com.uniview.postloan.pojo.PostloanFollowupList;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface PostloanFollowupListService extends IService<PostloanFollowupList> {
 
+    ResponseData<?> getFollowupList();
 }
