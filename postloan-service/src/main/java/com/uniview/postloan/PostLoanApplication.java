@@ -3,6 +3,7 @@ package com.uniview.postloan;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @author Kurt LEE
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan("com.uniview.postloan.mapper")
+@EnableFeignClients
 public class PostLoanApplication {
     public static void main(String[] args) {
         SpringApplication.run(PostLoanApplication.class, args);

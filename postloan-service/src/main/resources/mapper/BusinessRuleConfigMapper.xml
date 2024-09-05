@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.postloan.mapper.BusinessRuleConfigMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.postloan.pojo.BusinessRuleConfig">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="ruleDescription" column="rule_description" jdbcType="VARCHAR"/>
+            <result property="netPointName" column="net_point_name" jdbcType="INTEGER"/>
+            <result property="customerType" column="customer_type" jdbcType="INTEGER"/>
+            <result property="daysBeforeDue" column="days_before_due" jdbcType="INTEGER"/>
+            <result property="taskType" column="task_type" jdbcType="INTEGER"/>
+            <result property="taskMethods" column="task_methods" jdbcType="INTEGER"/>
+            <result property="repaymentMethod" column="repayment_method" jdbcType="INTEGER"/>
+            <result property="polling" column="polling" jdbcType="INTEGER"/>
+            <result property="pollingType" column="polling_type" jdbcType="INTEGER"/>
+            <result property="pollingDay" column="polling_day" jdbcType="INTEGER"/>
+            <result property="ruleStatus" column="rule_status" jdbcType="INTEGER"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateNetPoint" column="update_net_point" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,rule_description,net_point_name,
+        customer_type,days_before_due,task_type,
+        task_methods,repayment_method,polling,
+        polling_type,polling_day,rule_status,
+        update_by,update_time,update_net_point
+    </sql>
+</mapper>

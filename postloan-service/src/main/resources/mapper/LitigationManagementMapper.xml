@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.postloan.mapper.LitigationManagementMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.postloan.pojo.LitigationManagement">
+            <id property="litigationId" column="litigation_id" jdbcType="INTEGER"/>
+            <result property="caseId" column="case_id" jdbcType="INTEGER"/>
+            <result property="litigationStatus" column="litigation_status" jdbcType="VARCHAR"/>
+            <result property="initiatedDate" column="initiated_date" jdbcType="DATE"/>
+            <result property="expirationDate" column="expiration_date" jdbcType="DATE"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        litigation_id,case_id,litigation_status,
+        initiated_date,expiration_date
+    </sql>
+    <insert id="insertLitigationManagement">
+        INSERT INTO litigation_management (case_id, litigation_status, initiated_date, expiration_date)
+        VALUES (#{caseId}, #{litigationStatus}, #{initiatedDate}, #{expirationDate})
+    </insert>
+    <update id="updateLitigationStatus">
+        UPDATE litigation_management
+        SET litigation_status = #{status}
+        WHERE litigation_id = #{litigationId}
+    </update>
+    <select id="findLitigationById" resultType="com.uniview.postloan.pojo.LitigationManagement">
+        SELECT * FROM litigation_management WHERE litigation_id = #{litigationId}
+    </select>
+    <select id="findLitigationByCaseId" resultType="com.uniview.postloan.pojo.LitigationManagement">
+        SELECT * FROM litigation_management WHERE case_id = #{caseId}
+    </select>
+
+</mapper>

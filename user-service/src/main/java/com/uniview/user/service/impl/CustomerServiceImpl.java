@@ -77,6 +77,18 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
                 return 0;
         }
     }
+
+    /**
+     * 根据 customerId 查询客户信息
+     * @param customerId
+     * @return
+     */
+
+    @Override
+    public Customer getCustomerById(Long customerId) {
+        // TODO: 实现根据 customerId 查询客户信息
+        return getById(customerId);
+    }
 }
 
 

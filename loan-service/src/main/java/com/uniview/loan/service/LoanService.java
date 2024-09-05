@@ -10,4 +10,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface LoanService extends IService<Loan> {
 
+    Loan findById(Long loanId);
 }

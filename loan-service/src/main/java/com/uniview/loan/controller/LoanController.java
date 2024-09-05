@@ -34,4 +34,10 @@ public class LoanController {
         applicationsService.updateById(creditApplications);
         return new ResponseData<>().success();
     }
+    @GetMapping("/loanById")
+    public ResponseData<Loan> getLoanById(@RequestParam("loanId") Long loanId) {
+        Loan loan = loanService.findById(loanId);
+        return new ResponseData<Loan>().success(loan);
+    }
+
 }

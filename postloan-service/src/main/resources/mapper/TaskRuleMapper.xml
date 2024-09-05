@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.postloan.mapper.TaskRuleMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.postloan.pojo.TaskRule">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="ruleNamber" column="rule_namber" jdbcType="VARCHAR"/>
+            <result property="netPointNamber" column="net_point_namber" jdbcType="VARCHAR"/>
+            <result property="productNumber" column="product_number" jdbcType="VARCHAR"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="loanCeiling" column="loan_ceiling" jdbcType="VARCHAR"/>
+            <result property="loanFloor" column="loan_floor" jdbcType="VARCHAR"/>
+            <result property="startDate" column="start_date" jdbcType="TIMESTAMP"/>
+            <result property="endDate" column="end_date" jdbcType="TIMESTAMP"/>
+            <result property="ruleStatus" column="rule_status" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,rule_namber,net_point_namber,
+        product_number,product_name,loan_ceiling,
+        loan_floor,start_date,end_date,
+        rule_status
+    </sql>
+</mapper>

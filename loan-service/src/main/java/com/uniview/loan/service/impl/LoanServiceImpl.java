@@ -15,6 +15,10 @@ import org.springframework.stereotype.Service;
 public class LoanServiceImpl extends ServiceImpl<LoanMapper, Loan>
     implements LoanService{
 
+    @Override
+    public Loan findById(Long loanId) {
+        return getById(loanId);
+    }
 }
 
 
