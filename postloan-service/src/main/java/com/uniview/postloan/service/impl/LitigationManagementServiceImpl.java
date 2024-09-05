@@ -1,6 +1,7 @@
 package com.uniview.postloan.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.uniview.common.utils.ResponseData;
 import com.uniview.postloan.pojo.LitigationManagement;
 import com.uniview.postloan.service.LitigationManagementService;
 import com.uniview.postloan.mapper.LitigationManagementMapper;
@@ -15,6 +16,10 @@ import org.springframework.stereotype.Service;
 public class LitigationManagementServiceImpl extends ServiceImpl<LitigationManagementMapper, LitigationManagement>
     implements LitigationManagementService{
 
+    @Override
+    public ResponseData<?> getLitigationManagementList() {
+        return new ResponseData<>().success(list());
+    }
 }
 
 

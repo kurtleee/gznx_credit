@@ -17,9 +17,9 @@ public class CollectionRecordController {
     @Autowired
     private CollectionRecordService collectionRecordService;
     //查询催收记录列表
-    @PostMapping("/getCollectionRecordList")
-    public ResponseData<?> getCollectionRecordList(@RequestBody CollectionRecord collectionRecord) {
-        return collectionRecordService.getCollectionRecordList(collectionRecord);
+    @GetMapping("/getCollectionRecordList")
+    public ResponseData<?> getCollectionRecordList() {
+        return collectionRecordService.getCollectionRecordList();
     }
     //新增催收记录
     @PostMapping("/addCollectionRecord")

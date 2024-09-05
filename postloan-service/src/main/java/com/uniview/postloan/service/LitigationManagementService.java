@@ -1,5 +1,6 @@
 package com.uniview.postloan.service;
 
+import com.uniview.common.utils.ResponseData;
 import com.uniview.postloan.pojo.LitigationManagement;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface LitigationManagementService extends IService<LitigationManagement> {
 
+    ResponseData<?> getLitigationManagementList();
 }

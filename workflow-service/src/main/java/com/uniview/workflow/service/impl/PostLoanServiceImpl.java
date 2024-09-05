@@ -71,6 +71,7 @@ public class PostLoanServiceImpl implements PostLoanService {
         }
         if (flag == 0) {
             info.setApprovalStatus("审批不通过");
+            info.setCustomerName("张三");
             runtimeService.setVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "info", info);
             postLoanFeign.updateStatus(info);
         }
@@ -95,10 +96,12 @@ public class PostLoanServiceImpl implements PostLoanService {
         //此处可以将flag改变状态，0则审批不通过
         if (flag == 0) {
             info.setApprovalStatus("审批不通过");
+            info.setCustomerName("张三");
             runtimeService.setVariable(taskService.createTaskQuery().taskId(taskId).singleResult().getExecutionId(), "info", info);
             postLoanFeign.updateStatus(info);
         }else if(flag == 1){
             info.setApprovalStatus("审批通过");
+            info.setCustomerName("张三");
             postLoanFeign.updateStatus(info);
         }
         taskService.complete(taskId);
