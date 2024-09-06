@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uniview.personal.mapper.ContractsMapper">
+
+    <resultMap id="BaseResultMap" type="com.uniview.personal.pojo.Contracts">
+            <id property="contractId" column="contract_id" jdbcType="INTEGER"/>
+            <result property="customerName" column="customer_name" jdbcType="VARCHAR"/>
+            <result property="customerNumber" column="customer_number" jdbcType="VARCHAR"/>
+            <result property="mainGuaranteeMethod" column="main_guarantee_method" jdbcType="VARCHAR"/>
+            <result property="contractStatus" column="contract_status" jdbcType="VARCHAR"/>
+            <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        contract_id,customer_name,customer_number,
+        main_guarantee_method,contract_status,created_at
+    </sql>
+</mapper>
